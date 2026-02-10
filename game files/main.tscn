@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://upa0ijfvoj7x"]
+
+[ext_resource type="Script" path="res://game files/main.gd" id="1_5l2cm"]
+[ext_resource type="PackedScene" uid="uid://d2becj36hc7rb" path="res://game files/hangman.tscn" id="1_y8nkf"]
+[ext_resource type="PackedScene" uid="uid://b7u2t4rya8iwr" path="res://game files/hud.tscn" id="2_mswmy"]
+[ext_resource type="Texture2D" uid="uid://m1i3uffc347j" path="res://assets/Scafold.png" id="4_0ocom"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_5l2cm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.316035, 0.644173, 0.83412, 1)
+
+[node name="hangman" parent="." instance=ExtResource("1_y8nkf")]
+position = Vector2(618, 294)
+frame_progress = 0.89867
+
+[node name="HUD" parent="." instance=ExtResource("2_mswmy")]
+
+[node name="scafold" type="Sprite2D" parent="."]
+position = Vector2(584, 312)
+texture = ExtResource("4_0ocom")
+
+[connection signal="guess" from="HUD" to="." method="_on_hud_guess"]
+[connection signal="newGameSignal" from="HUD" to="." method="newGame"]
