@@ -1,0 +1,15 @@
+extends Node
+	
+var phrases: Array = ["Boat Man",
+"Discord",
+"Long live the king",
+"Maverick",
+"Praise the Sun",
+"Icarus",
+"A sentance with a lot of letters",
+"teachers pop quiz",
+"this game was made in Godot engine",
+"Blue Prince"]
+
+func getPhrases():
+	return phrases

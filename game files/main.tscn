@@ -7,8 +7,16 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_5l2cm")
+phrasesFile = "res://assets/SecretPhrases.txt"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="ColorRect" type="ColorRect" parent="Screen"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,15 +24,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.316035, 0.644173, 0.83412, 1)
 
-[node name="hangman" parent="." instance=ExtResource("1_y8nkf")]
+[node name="hangman" parent="Screen" instance=ExtResource("1_y8nkf")]
 position = Vector2(618, 294)
 frame_progress = 0.89867
 
-[node name="HUD" parent="." instance=ExtResource("2_mswmy")]
+[node name="HUD" parent="Screen" instance=ExtResource("2_mswmy")]
 
-[node name="scafold" type="Sprite2D" parent="."]
+[node name="scafold" type="Sprite2D" parent="Screen"]
 position = Vector2(584, 312)
 texture = ExtResource("4_0ocom")
 
-[connection signal="guess" from="HUD" to="." method="_on_hud_guess"]
-[connection signal="newGameSignal" from="HUD" to="." method="newGame"]
+[connection signal="guess" from="Screen/HUD" to="." method="_on_hud_guess"]
+[connection signal="newGameSignal" from="Screen/HUD" to="." method="newGame"]

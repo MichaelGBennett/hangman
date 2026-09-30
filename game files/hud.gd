@@ -7,33 +7,27 @@ signal newGameSignal
 func _ready() -> void:
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_player_input_text_change_rejected(rejected_substring: String) -> void:
-	$PlayerInput.text = rejected_substring
+	$Input/PlayerInput.text = rejected_substring
 
 
 func _on_player_input_text_submitted(letter: String) -> void:
 	guess.emit(letter)
 
-func addWrongGuess(guess: String):
-	$WrongGuesses.text = $WrongGuesses.text + guess
+func addWrongGuess(newGuess: String):
+	$Guesses/WrongGuesses.text = $Guesses/WrongGuesses.text + newGuess
 
 func wrongGuessContainsLetter(letter: String) -> bool:
-	return $WrongGuesses.text.contains(letter)
+	return $Guesses/WrongGuesses.text.contains(letter)
 	
-func setCorrectGuess(guess: String):
-	$CorrectGuesses.text = guess
+func setCorrectGuess(newGuess: String):
+	$Guesses/CorrectGuesses.text = newGuess
 	
 func newGame():
-	$PlayerInput.clear()
-	$CorrectGuesses.text = ""
-	$WrongGuesses.text = ""
-	
+	$Input/PlayerInput.clear()
+	$Guesses/CorrectGuesses.text = ""
+	$Guesses/WrongGuesses.text = ""
+	$Input/PlayerInput.grab_focus()
 
 func _on_message_timer_timeout() -> void:
 	$Message.hide()
